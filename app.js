@@ -27,7 +27,8 @@ var users = require('./routes/users');
 var app = express();
 var server = require('http').createServer(app);
 var io = socketio.listen(server);
-server.listen(3000);
+// app.set('port', (process.env.PORT || 5000));
+server.listen(process.env.PORT || 5000);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
