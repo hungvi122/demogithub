@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+
+<html ng-app="flapperNews">
+<head>
+  <title>Flapper News</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+  <script src="/js/angular.min.js"></script>
+  <script src="/js/angular-ui-router.js"></script>
+  <script src="/javascripts/angularApp.js"></script>
+  <style>.glyphicon-thumbs-up { cursor:pointer } </style>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/jquery.bxslider.js"></script>
+<script src="/js/rainbow.min.js"></script>
+<script src="/js/scripts.js"></script>
+
+<script src="/js/simpleCart.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap-3.1.1.min.js"></script>
+<link rel="stylesheet" href="/css/jquery.countdown.css" />
+<link href="/css/animate.min.css" rel="stylesheet"> 
+<script src="/js/wow.min.js"></script>
+
+
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="/css/github.css" type="text/css" />
+<link rel="stylesheet" href="/css/jquery.bxslider.css" type="text/css" />
+<link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/style-customs.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Best Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+  function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+<script>
+new WOW().init();
+</script>
+<!-- //animation-effect -->
+<!-- <script src="javascripts/jquery.min.js"></script> -->
+
+  <script type="text/javascript">
+    jQuery(function($){
+      var socket = io.connect();
+      var $notify = $('#notify');
+
+      socket.on('timeCount', function(data){
+        initializeClock('clockdiv', data);
+      });
+    })
+
+      function initializeClock(id, endtime) {
+      var clock = document.getElementById(id);
+      var daysSpan = clock.querySelector('.days');
+      var hoursSpan = clock.querySelector('.hours');
+      var minutesSpan = clock.querySelector('.minutes');
+      var secondsSpan = clock.querySelector('.seconds');
+      daysSpan.innerHTML = endtime.days;
+      hoursSpan.innerHTML = ('0' + endtime.hours).slice(-2);
+      minutesSpan.innerHTML = ('0' + endtime.minutes).slice(-2);
+      secondsSpan.innerHTML = ('0' + endtime.seconds).slice(-2);
+
+      function updateClock() {
+        if (t.total <= 0) {
+          clearInterval(timeinterval);
+        }
+      }
+    }
+  </script>
+
+ <script type="text/javascript">
+  $(document).ready(function(){
+	 
+    
+$('.bxslider').bxSlider({
+  auto: true,
+  autoControls: true
+   
+});
+  });
+</script>
+ 
+
+</head>
+<body >
+  
+<div class="container" ng-controller="NavCtrl">
+  <div class="logo-nav">
+    <!-- <div class="header-right"> -->
+      <div class="logo-nav-left animated wow zoomIn" data-wow-delay=".5s">
+        <h1><a href="#/home">Online Auctions <span>Bid! Win! Save!</span></a></h1>
+      </div>  
+      <div class="logo-nav-right">
+        <div class="search-box">
+          <div id="sb-search" class="sb-search">
+            <form>
+              <input class="sb-search-input" placeholder="Enter your search term..." type="search" id="search">
+              <input class="sb-search-submit" type="submit" value="">
+              <span class="sb-icon-search"> </span>
+            </form>
+          </div>
+        </div>
+          <!-- search-scripts -->
+          <script src="js/classie.js"></script>
+          <script src="js/uisearch.js"></script>
+            <script>
+              new UISearch( document.getElementById( 'sb-search' ) );
+            </script>
+          <!-- //search-scripts -->
+      </div>
+      <div class="header-right">
+      <div class="header-grid">
+          <div class="header-grid-left animated wow slideInLeft" data-wow-delay=".5s">
+      <ul>      
+      <li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
+      <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
+      <li ng-hide="isLoggedIn()"><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="/#/login">Login</a></li>
+      <li ng-hide="isLoggedIn()"><i class="glyphicon glyphicon-book" aria-hidden="true"></i><a href="/#/register">Register</a></li>
+            </ul>
+      </div>
+      </div>
+      
+      </div>
+      <div class="logo-nav-left1">
+        <nav class="navbar navbar-default">
+          <div class="navbar-header nav_2"> 
+          <button type="button" id="btn-navbar" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+         </div> 
+         </nav>
+         </div>
+      
+  </div>
+  <div class="logo-nav" style="clear:both;">
+      <!-- <div class="logo-nav-left animated wow zoomIn" data-wow-delay=".5s">
+        <h1><a href="index.html">Online Auctions <span>Bid! Win! Save!</span></a></h1>
+      </div> -->
+      <div class="logo-nav-left1">
+        <nav class="navbar navbar-default">
+        
+        <div class="collapse navbar-collapse"  id="bs-megadropdown-tabs">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#/home" class="act">Home</a></li> 
+            <!-- Mega Menu -->
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Auctioning<b class="caret"></b></a>
+              <ul class="dropdown-menu multi-column columns-3">
+                <li><a href="single.html">All</a></li>
+                <li><a href="single.html">Technology</a></li>
+                <li><a href="single.html">Fashion</a></li>
+                <li><a href="single.html">Appliances</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Done <b class="caret"></b></a>
+              <ul class="dropdown-menu multi-column columns-3">
+                <li><a href="single.html">All</a></li>
+                <li><a href="single.html">Technology</a></li>
+                <li><a href="single.html">Fashion</a></li>
+                <li><a href="single.html">Appliances</a></li>
+              </ul>
+              
+            </li>
+            <li><a href="checkout.html">Result</a></li>
+            <li><a href="single.html">Top Winner</a></li>
+
+          </ul>
+        </div>
+        </nav>
+      </div>
+      
+    </div>  
+  </div>  
+  <!-- banner -->
+<div class="slider container">
+<ul class="bxslider">
+  <li><img  src="./images/hill_trees.jpg" /></li>
+  <li><img  src="./images/me_trees.jpg" /></li>
+  <li><img  src="./images/houses.jpg" /></li>
+  <li><img  src="./images/hill_trees.jpg" /></li>
+  <li><img  src="./images/me_trees.jpg" /></li>
+  <li><img  src="./images/houses.jpg" /></li>
+</ul>
+</div>
+<!-- //banner -->
+<!-- banner-bottom -->
+<div class="banner-bottom">
+	<div class="container"> 
+		<div class="banner-bottom-grids row">
+		
+			<div class=" animated wow slideInUp col-lg-4 col-md-4 col-sm-4 col-xs-12" data-wow-delay=".5s">
+				<div class="banner-bottom-grid-left-grid left1-grid grid-left-grid1">
+					<div class="banner-bottom-grid-left-grid1">
+						<img src="images/1.jpg" alt=" " class="img-responsive" />
+					</div>
+					<div class="banner-bottom-grid-left1-pos">
+						<p>Discount 45%</p>
+					</div>
+				</div>
+				<!-- banner-bottom-grid-left-grid -->
+				<div class=" left1-grid grid-left-grid1 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+					<div class="banner-bottom-grid-left-grid1">
+						<img src="images/2.jpg" alt=" " class="img-responsive" />
+					</div>
+					<div class="banner-bottom-grid-left1-position">
+						<div class="banner-bottom-grid-left1-pos1">
+							<p>Latest New Collections</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 animated wow slideInRight" data-wow-delay=".5s">
+				<div class="banner-bottom-grid-left-grid grid-left-grid1">
+					<div class="banner-bottom-grid-left-grid1">
+						<img src="images/3.jpg" alt=" " class="img-responsive" />
+					</div>
+					<div class="grid-left-grid1-pos">
+						<p>top and classic designs <span>2016 Collection</span></p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 animated wow slideInRight" data-wow-delay=".5s">
+				<div class="banner-bottom-grid-left-grid grid-left-grid1">
+					<div class="banner-bottom-grid-left-grid1">
+						<img src="images/3.jpg" alt=" " class="img-responsive" />
+					</div>
+					<div class="grid-left-grid1-pos">
+						<p>top and classic designs <span>2016 Collection</span></p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+<!--header-->
+<!-- //banner-bottom -->
+<!-- collections -->
+<div class="clearfix"></div>
+<div class="new-collections">
+	<div class="container">
+		<h3 class="animated wow zoomIn" data-wow-delay=".5s">New Collections</h3>
+			<p class="est animated wow zoomIn" data-wow-delay=".5s">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia 
+				deserunt mollit anim id est laborum.</p>
+			<div class="new-collections-grids">
+
+		<div class="row">
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+				<a href="single.html" class="img-product"> <img src="images/1.jpg" class="img-responsive img-responsive-product" alt="">
+				</a>
+					<div class="title label label-info">RUNNING SHOES</div>
+					<div class="info-product">
+						<div class="number-bids"><span class="label-number label label-default">Bids:</span> <span class="label label-info text-number-bids">6</span></div>
+						
+						<div class="user-bids" >
+							<span class="label label-default user-name ">
+								Group 7
+							</span>
+							<div class="price-product label label-info">
+								100.000
+							</div>
+						</div>
+						<div class="clearfix"></div>
+						<div class="timer-server label label-info" ng-controller="auctionCtrl">
+							12:0:0
+							<div id="clockdiv">
+							  <div>
+								<span class="days"></span>
+								<div class="smalltext">Days</div>
+							  </div>
+							  <div>
+								<span class="hours"></span>
+								<div class="smalltext">Hours</div>
+							  </div>
+							  <div>
+								<span class="minutes"></span>
+								<div class="smalltext">Minutes</div>
+							  </div>
+							  <div>
+								<span class="seconds"></span>
+								<div class="smalltext">Seconds</div>
+							  </div>
+							</div>
+							<br>
+							<STRONG>Price: </STRONG>
+							<div id="notify">{{errMessage}}</div>
+							<div id="price">{{currentPrice[0].price}}$</div>
+							<form id="send-price" ng-submit="submitAuction()">
+								<input size="35" id="pricesub" ng-model="newPrice">
+								<input type="submit" name="Submit">
+							</form>
+
+						</div>
+						<div class="form-product">
+							<div class="price-pay-now label label-info">
+								200.000
+							</div>
+							<div class="submit-pay btn btn-primary">
+								BID Now
+							</div>
+						</div>
+					</div>
+				
+
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+				<a href="single.html" class="img-product"> <img src="images/1.jpg" class="img-responsive img-responsive-product" alt="">
+				</a>
+					<div class="title label label-info">RUNNING SHOES</div>
+					<div class="info-product">
+						<div class="number-bids"><span class="label-number label label-default">Bids:</span> <span class="label label-info text-number-bids">6</span></div>
+						
+						<div class="user-bids" >
+							<span class="label label-default user-name ">
+								Group 7
+							</span>
+							<div class="price-product label label-info">
+								100.000
+							</div>
+						</div>
+						<div class="clearfix"></div>
+						<div class="timer-server label label-info">
+							12:0:0
+						</div>
+						<div class="form-product">
+							<div class="price-pay-now label label-info">
+								200.000
+							</div>
+							<div class="submit-pay btn btn-primary">
+								BID Now
+							</div>
+						</div>
+					</div>
+				
+
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+				<a href="single.html" class="img-product"> <img src="images/1.jpg" class="img-responsive img-responsive-product" alt="">
+				</a>
+					<div class="title label label-info">RUNNING SHOES</div>
+					<div class="info-product">
+						<div class="number-bids"><span class="label-number label label-default">Bids:</span> <span class="label label-info text-number-bids">6</span></div>
+						
+						<div class="user-bids" >
+							<span class="label label-default user-name ">
+								Group 7
+							</span>
+							<div class="price-product label label-info">
+								100.000
+							</div>
+						</div>
+						<div class="clearfix"></div>
+						<div class="timer-server label label-info">
+							12:0:0
+						</div>
+						<div class="form-product">
+							<div class="price-pay-now label label-info">
+								200.000
+							</div>
+							<div class="submit-pay btn btn-primary">
+								BID Now
+							</div>
+						</div>
+					</div>
+				
+
+			</div>
+					
+		</div>
+		<div class="row"></div>
+	<div class="clearfix"> </div>
+	</div>
+</div>
+			<div class="clearfix"> </div>
+		</div>
+
+
+
+  <div class="row">
+    <div class="container">
+      <ui-view></ui-view>
+    </div>
+  </div>
+
+  <script type="text/ng-template" id="/home.html">
+
+  <div class="page-header">
+    <h1>Flapper News</h1>
+  </div>
+
+  <div ng-repeat="post in posts | orderBy:'-upvotes'">
+    <span class="glyphicon glyphicon-thumbs-up"
+      ng-click="incrementUpvotes(post)"></span>
+    {{post.upvotes}}
+    <span style="font-size:20px; margin-left:10px;">
+      <a ng-show="post.link" href="{{post.link}}" target="_blank">{{post.title}}</a>
+      <span ng-hide="post.link">{{post.title}}</span>
+      <span ng-show="post.author">
+        posted by <a>{{post.author}}</a> |
+      </span>
+    </span>
+
+    <span>
+      <a href="#/posts/{{post._id}}">Comments</a>
+    </span>
+  </div>
+
+  <form ng-submit="addPost()" 
+    ng-show="isLoggedIn()"
+    style="margin-top:30px;">
+    <h3>Add a new post</h3>
+
+    <div class="form-group">
+      <input type="text"
+        class="form-control"
+        placeholder="Title"
+        ng-model="title"></input>
+    </div>
+    <div class="form-group">
+      <input type="text"
+      class="form-control"
+      placeholder="Link"
+      ng-model="link"></input>
+    </div>
+    <button type="submit" class="btn btn-primary">Post</button>
+  </form>
+
+  <div ng-hide="isLoggedIn()">
+  <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can add a post.</h3>
+</div>
+
+</script>
+
+<script type="text/ng-template" id="/posts.html">
+  <div class="page-header">
+    <h3>
+      <a ng-show="post.link" href="{{post.link}}" target="_blank">{{post.title}}</a>
+      <span ng-hide="post.link">{{post.title}}</span>
+    </h3>
+  </div>
+
+  <div ng-repeat="comment in post.comments | orderBy:'-upvotes'">
+    <span class="glyphicon glyphicon-thumbs-up"
+      ng-click="incrementUpvotes(comment)"></span>
+    {{comment.upvotes}} - by {{comment.author}}
+    <span style="font-size:20px; margin-left:10px;">{{comment.body}}</span>
+  </div>
+
+  <form ng-submit="addComment()" 
+  ng-show="isLoggedIn()"
+    style="margin-top:30px;">
+    <h3>Add a new comment</h3>
+
+    <div class="form-group">
+      <input type="text"
+      class="form-control"
+      placeholder="Comment"
+      ng-model="body"></input>
+    </div>
+    <button type="submit" class="btn btn-primary">Post</button>
+  </form>
+
+  <div ng-hide="isLoggedIn()">
+  <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can comment.</h3>
+</div>
+</script>
+
+<script type="text/ng-template" id="/register.html">
+
+<div class="container">
+
+    <div class="jumbotron text-center" >
+        <h1><span class="fa fa-lock"></span> Node Authentication</h1>
+
+        <p>Login or Register with:</p>
+
+        <div style = "float: left;">
+        <a style = "float: left; margin-right: 50px" href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
+          <a style = "float: left; margin-right: 50px" href="/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span> Twitter</a>
+
+         <a style = "float: left" href="/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google</a>
+        </div>
+    </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <h1>Sign up</h1>
+    </div>
+    <div class="col-sm-12">
+    <div ng-show = "error" class = "alert alert-danger row">
+      <span>{{error.message}}</span>
+    </div>
+      <form class="form" name="form" ng-submit="register()" novalidate>
+
+        <div class="form-group" ng-class="{ 'has-success': form.name.$valid & submitted,
+                                            'has-error': form.name.$invalid& submitted}">
+          <label>Name</label>
+
+          <input type="text" name="name" class="form-control" ng-model="user.username"
+                 required> </input>
+          <p class="help-block" ng-show="form.name.$error.required && submitted">
+            A name is required
+          </p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
+                                            'has-error': form.email.$invalid && submitted }">
+          <label>Email</label>
+
+          <input type="email" name="email" class="form-control" ng-model="user.email"
+                 required
+                 ></input>
+          <p class="help-block" ng-show="form.email.$error.email && submitted">
+            Doesn't look like a valid email.
+          </p>
+          <p class="help-block" ng-show="form.email.$error.required && submitted">
+            What's your email address?
+          </p>
+          <p class="help-block" ng-show="form.email.$error.mongoose">
+            {{ errors.email }}
+          </p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.password.$valid && submitted,
+                                            'has-error': form.password.$invalid && submitted }">
+          <label>Password</label>
+
+          <input type="password" name="password" class="form-control" ng-model="user.password"
+                 ng-minlength="3"
+                 required
+                 mongoose-error/>
+          <p class="help-block"
+             ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
+            Password must be at least 3 characters.
+          </p>
+          <p class="help-block" ng-show="form.password.$error.mongoose">
+            {{ errors.password }}
+          </p>
+        </div>
+
+        <div style = "float: left">
+          <button class="btn btn-primary" style = "float: left; margin-right: 50px" type="submit">
+            Sign up
+          </button>
+          <a class="btn btn-primary" style = "float: right" href="#/login">
+            Login
+          </a>
+        </div>
+
+        <hr>
+        
+        
+    </div>
+
+      </form>
+    </div>
+  </div>
+  <hr>
+</div>
+
+</script>
+
+<script type="text/ng-template" id="/login.html">
+  <div class="page-header">
+    <h1>Flapper News</h1>
+  </div>
+
+  <div ng-show="error" class="alert alert-danger row">
+    <span>{{ error.message }}</span>
+  </div>
+
+  <form ng-submit="logIn()"
+    style="margin-top:30px;">
+    <h3>Log In</h3>
+
+    <div class="form-group">
+      <input type="text"
+      class="form-control"
+      placeholder="Username"
+      ng-model="user.username"></input>
+    </div>
+    <div class="form-group">
+      <input type="password"
+      class="form-control"
+      placeholder="Password"
+      ng-model="user.password"></input>
+    </div>
+    <button type="submit" class="btn btn-primary">Log In</button>
+  </form>
+  </script>
+
+
+  <div class="container">
+    
+  
+  <div class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 footer-grid  animated wow slideInLeft" data-wow-delay=".5s">
+        <a href="about.html"><h3>About Us</h3></a>
+        <p>Web Developer 13CNTN.<span>Group 7.</span></p>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 footer-grid  animated wow slideInLeft" data-wow-delay=".6s">
+        <a href="mail.html"><h3>Contact Info</h3></a>
+        <ul>
+          <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>University of Science<span>Ho Chi Minh City.</span></li>
+          <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">nhom7cntn@gmail.com</a></li>
+           
+        </ul>
+      </div>
+      
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 footer-grid animated wow slideInLeft" data-wow-delay=".8s">
+        <a href="quydinh.html"><h3>Customer care</h3></a>
+        <div class="footer-grid-sub-grids">
+          <div class="footer-grid-sub-grid-left">
+            <a href="register.html"><img src="images/9.jpg" alt=" " class="img-responsive" /></a>
+          </div>
+          <div class="footer-grid-sub-grid-right">
+            <h4><a href="register.html">Register</a></h4>
+            
+            <!-- <p>Posted On 25/3/2016</p> -->
+          </div>
+          <div class="clearfix"> </div>
+        </div>
+        <div class="footer-grid-sub-grids">
+          <div class="footer-grid-sub-grid-left">
+            <a href="quydinh.html"><img src="images/10.jpg" alt=" " class="img-responsive" /></a>
+          </div>
+          <div class="footer-grid-sub-grid-right">
+            <h4><a href="quydinh.html">Rule</a></h4>
+            
+          </div>
+          <div class="clearfix"> </div>
+        </div>
+      </div>
+      <div class="clearfix"> </div>
+    </div>
+    <div class="footer-logo animated wow slideInUp" data-wow-delay=".5s">
+      <h2><a href="index.html">Online Auctions <span>Bid! Win! Save!</span></a></h2>
+    </div>
+    <div class="copy-right animated wow slideInUp" data-wow-delay=".5s">
+      <p>&copy 2016 Online Auctions. All rights reserved | Design by Group 7</p>
+    </div>
+  </div>
+  </div>
+</div>
+</body>
+</html>
